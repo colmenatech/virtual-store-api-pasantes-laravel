@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\productController;
 use App\Http\Controllers\Api\shoppingcartController;
 use App\Models\shoppingcart;
+use App\Http\Controllers\Api\usuariosController;
 
 Route::get('/products', [productController::class, 'index']);
 
@@ -25,3 +26,10 @@ Route::get('/cart', [shoppingcartController::class, 'index']);
 Route::delete('/cart/{product_id}', [shoppingcartController::class, 'destroy']); // Eliminar producto del carrito
 
 Route::post('/checkout', [shoppingcartController::class, 'checkout']); // Finalizar compra y generar factura
+
+Route::get('/Usuarios', [usersController::class, 'mostrar']);
+
+Route::post('/Usuarios/{id}',[usersController::class,'buscar']);
+
+Route::post('/Usuarios', [usersController::class, 'registrar']);
+
