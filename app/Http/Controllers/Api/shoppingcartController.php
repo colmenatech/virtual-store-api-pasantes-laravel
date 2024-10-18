@@ -9,7 +9,7 @@ use App\Models\shoppingcart;
 
 class shoppingcartController extends Controller
 {
-     // Método para obtener todos los carritos
+    /* // Método para obtener todos los carritos
      public function index()
      {
          // Obtener todos los carritos de compras
@@ -223,5 +223,5 @@ class shoppingcartController extends Controller
          // Aquí se puede agregar la lógica para procesar el pago y generar la factura.
  
          return response()->json(['message' => 'Compra finalizada y factura generada', 'status' => 201], 201);
-     }
+     }*/
 }

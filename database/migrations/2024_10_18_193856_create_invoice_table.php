@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('invoice', function (Blueprint $table) {
+            $table->integer('IdInvoice', true);
+            $table->integer('IdUser');
+            $table->decimal('Total', 65, 0);
+            $table->dateTime('CreatedAt', 6);
         });
     }
 
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('invoice');
     }
 };

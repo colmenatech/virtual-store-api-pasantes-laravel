@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class usuariosController extends Controller
 {
-   // Mostrar todos los usuarios
+   /*// Mostrar todos los usuarios
    public function mostrar()
    {
        // Obtener todos los usuarios
@@ -92,5 +92,5 @@ class usuariosController extends Controller
        ];
 
        return response()->json($data, 200);
-   }
+   }*/
 }
