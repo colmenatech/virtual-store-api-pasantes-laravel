@@ -9,13 +9,13 @@ use App\Models\Products;
 
 class productController extends Controller
 {
-    /*// Método para obtener todos los carritos
+    // Método para obtener todos los carritos
     public function index()
     {
         // Obtener todas las compras
         $products = Products::all();
 
-        // Verificar si no se encontraron carritos
+        // Verificar si no se encontraron productos
         if ($products->isEmpty()) {
             return response()->json(['message' => 'No se encontró el producto'], 404);
         }
@@ -33,12 +33,12 @@ class productController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required| max:10',
-            'stock' => 'required',
-            'category_id' => 'required',
-            'status' => 'required'
+            'NameProduct' => 'required',
+            'Description' => 'required',
+            'Price' => 'required| max:10',
+            'Stock' => 'required',
+            'IdCategory' => 'required',
+            'Status' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -51,12 +51,12 @@ class productController extends Controller
         }
 
         $products = Products::create([
-           'name' => $request->name,
-           'description' => $request->description,
+           'NameProduct' => $request->name,
+           'Description' => $request->description,
            'price' => $request->price,
            'stock' => $request->stock,
-           'category_id' => $request->category_id,
-           'status' => $request->status
+           'IdCategory' => $request->category_id,
+           'Status' => $request->status
         ]);
 
         //return response()->json(['products' => $products , 'status' => 201], 201);
@@ -232,5 +232,5 @@ class productController extends Controller
         // Aquí se puede agregar la lógica para procesar el pago y generar la factura.
 
         return response()->json(['message' => 'Compra finalizada y factura generada', 'status' => 201], 201);
-    }*/
+    }
 }
