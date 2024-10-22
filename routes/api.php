@@ -23,21 +23,12 @@ Route::put('/products/{id}', [productController::class, 'update']); //actualiza 
 //Cliente
 
 
-
-//Carrito de compras
-Route::post('/cart', [shoppingcartController::class, 'store']); // Agregar producto al carrito
-
-Route::get('/cart', [shoppingcartController::class, 'index']);
-
-Route::delete('/cart/{product_id}', [shoppingcartController::class, 'destroy']); // Eliminar producto del carrito
-
-Route::post('/checkout', [shoppingcartController::class, 'checkout']); // Finalizar compra y generar factura
-
-
 //Usuarios
 Route::get('/Usuarios', [usuariosController::class, 'mostrar']);
 
 Route::post('/Usuarios/{id}',[usuariosController::class,'buscar']);
 
 Route::post('/Usuarios', [usuariosController::class, 'registrar']);
+
+//Categorias
 
