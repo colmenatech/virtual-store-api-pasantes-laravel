@@ -51,12 +51,12 @@ class productController extends Controller
         }
 
         $products = Products::create([
-           'NameProduct' => $request->name,
-           'Description' => $request->description,
-           'price' => $request->price,
-           'stock' => $request->stock,
-           'IdCategory' => $request->category_id,
-           'Status' => $request->status
+           'NameProduct' => $request->NameProduct,
+           'Description' => $request->Description,
+           'Price' => $request->Price,
+           'Stock' => $request->Stock,
+           'IdCategory' => $request->IdCategory,
+           'Status' => $request->Status
         ]);
 
         //return response()->json(['products' => $products , 'status' => 201], 201);
