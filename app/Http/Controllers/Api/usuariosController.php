@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Usuarios;
+use Illuminate\Support\Facades\Validator;
 
 class usuariosController extends Controller
 {
