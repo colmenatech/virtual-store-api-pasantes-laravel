@@ -9,10 +9,13 @@ use App\Models\Products;
 
 class productController extends Controller
 {
-    // Método para obtener todos los carritos
+
+    //ADMINISTRADOR
+
+    // Método para obtener todos los productos
     public function index()
     {
-        // Obtener todas las compras
+        // Obtener todas los productos
         $products = Products::all();
 
         // Verificar si no se encontraron productos
@@ -77,25 +80,6 @@ class productController extends Controller
         return response()->json($data, 201);
     }
 
-    public function show($id)
-    {
-        $product = Products::find($id);
-
-        if (!$product) {
-            $data = [
-                'message' => 'Producto no encontrado',
-                'status' => 404
-            ];
-            return response()->json($data, 404);
-        }
-
-        $data = [
-            'products' => $product,
-            'status' => 200
-        ];
-
-        return response()->json($data, 200);
-    }
 
     public function destroy($id)
     {
@@ -132,12 +116,12 @@ class productController extends Controller
         }
 
        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required| max:10',
-            'stock' => 'required',
-            'category_id' => 'required',
-            'status' => 'required'
+            'NameProduct' => 'required',
+            'Description' => 'required',
+            'Price' => 'required| max:10',
+            'Stock' => 'required',
+            'IdCategory' => 'required',
+            'Status' => 'required'
        ]);
 
         if ($validator->fails()) {
@@ -149,12 +133,12 @@ class productController extends Controller
             return response()->json($data, 400);
         }
 
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->stock = $request->stock;
-        $product->category_id = $request->category_id;
-        $product->status = $request->status;
+        $product->NameProduct = $request->NameProduct;
+        $product->Description = $request->Description;
+        $product->Price = $request->Price;
+        $product->Stock = $request->Stock;
+        $product->IdCategory = $request->IdCategory;
+        $product->Status = $request->Status;
 
         $product->save();
 
@@ -223,6 +207,46 @@ class productController extends Controller
     //     return response()->json($data, 200);
     // }
 
+    //CLIENTE
+
+    // Método para obtener todos los productos
+     public function indexcliente()
+     {
+         // Obtener todas los productos
+         $products = Products::all();
+ 
+         // Verificar si no se encontraron productos
+         if ($products->isEmpty()) {
+             return response()->json(['message' => 'No se encontró el producto'], 404);
+         }
+ 
+         // Preparar la respuesta
+         $data =[
+             'products' => $products,
+             'status' => 200
+     ];
+    }
+
+    public function show($id)
+    {
+        $product = Products::find($id);
+
+        if (!$product) {
+            $data = [
+                'message' => 'Producto NO encontrado',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        }
+
+        $data = [
+            'products' => $product,
+            'status' => 200
+        ];
+
+        return response()->json($data, 200);
+    }
+
     
     // POST /checkout: Finalizar compra y generar factura
     public function checkout(Request $request)
@@ -231,6 +255,6 @@ class productController extends Controller
 
         // Aquí se puede agregar la lógica para procesar el pago y generar la factura.
 
-        return response()->json(['message' => 'Compra finalizada y factura generada', 'status' => 201], 201);
+        return response()->json(['message' => 'Producto Finalizado en Orden', 'status' => 201], 201);
     }
 }
