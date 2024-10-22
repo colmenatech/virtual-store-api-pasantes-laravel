@@ -17,61 +17,63 @@ class productController extends Controller
 
         // Verificar si no se encontraron carritos
         if ($products->isEmpty()) {
-            return response()->json(['message' => 'No se encontró el producto'], 404);
+            return response()->json(
+                ["message" => "No se encontró el producto"],
+                404
+            );
         }
 
         // Preparar la respuesta
-        $data =[
-            'products' => $products,
-            'status' => 200
-    ];
-            
-    return response()->json($data, 200);
+        $data = [
+            "products" => $products,
+            "status" => 200,
+        ];
+
+        return response()->json($data, 200);
     }
 
     public function store(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required| max:10',
-            'stock' => 'required',
-            'category_id' => 'required',
-            'status' => 'required'
+            "name" => "required",
+            "description" => "required",
+            "price" => "required| max:10",
+            "stock" => "required",
+            "category_id" => "required",
+            "status" => "required",
         ]);
 
         if ($validator->fails()) {
             $data = [
-                'message' => 'Error en la validación de los datos',
-                'errors' => $validator->errors(),
-                'status' => 400
+                "message" => "Error en la validación de los datos",
+                "errors" => $validator->errors(),
+                "status" => 400,
             ];
             return response()->json($data, 400);
         }
 
         $products = Products::create([
-           'name' => $request->name,
-           'description' => $request->description,
-           'price' => $request->price,
-           'stock' => $request->stock,
-           'category_id' => $request->category_id,
-           'status' => $request->status
+            "name" => $request->name,
+            "description" => $request->description,
+            "price" => $request->price,
+            "stock" => $request->stock,
+            "category_id" => $request->category_id,
+            "status" => $request->status,
         ]);
 
         //return response()->json(['products' => $products , 'status' => 201], 201);
 
         if (!$products) {
             $data = [
-                'message' => 'Error al crear el producto',
-                'status' => 500
+                "message" => "Error al crear el producto",
+                "status" => 500,
             ];
             return response()->json($data, 500);
         }
 
         $data = [
-            'products' => $products,
-            'status' => 201
+            "products" => $products,
+            "status" => 201,
         ];
 
         return response()->json($data, 201);
@@ -83,15 +85,15 @@ class productController extends Controller
 
         if (!$product) {
             $data = [
-                'message' => 'Producto no encontrado',
-                'status' => 404
+                "message" => "Producto no encontrado",
+                "status" => 404,
             ];
             return response()->json($data, 404);
         }
 
         $data = [
-            'products' => $product,
-            'status' => 200
+            "products" => $product,
+            "status" => 200,
         ];
 
         return response()->json($data, 200);
@@ -99,21 +101,21 @@ class productController extends Controller
 
     public function destroy($id)
     {
-        $product= Products::find($id);
+        $product = Products::find($id);
 
         if (!$product) {
             $data = [
-                'message' => 'Producto NO encontrado',
-                'status' => 404
+                "message" => "Producto NO encontrado",
+                "status" => 404,
             ];
             return response()->json($data, 404);
         }
-        
+
         $product->delete();
 
         $data = [
-            'message' => 'Producto eliminado',
-            'status' => 200
+            "message" => "Producto eliminado",
+            "status" => 200,
         ];
 
         return response()->json($data, 200);
@@ -125,26 +127,26 @@ class productController extends Controller
 
         if (!$product) {
             $data = [
-                'message' => 'Producto NO encontrado',
-                'status' => 404
+                "message" => "Producto NO encontrado",
+                "status" => 404,
             ];
             return response()->json($data, 404);
         }
 
-       $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required| max:10',
-            'stock' => 'required',
-            'category_id' => 'required',
-            'status' => 'required'
-       ]);
+        $validator = Validator::make($request->all(), [
+            "name" => "required",
+            "description" => "required",
+            "price" => "required| max:10",
+            "stock" => "required",
+            "category_id" => "required",
+            "status" => "required",
+        ]);
 
         if ($validator->fails()) {
             $data = [
-                'message' => 'Error en la validación de los datos',
-                'errors' => $validator->errors(),
-                'status' => 400
+                "message" => "Error en la validación de los datos",
+                "errors" => $validator->errors(),
+                "status" => 400,
             ];
             return response()->json($data, 400);
         }
@@ -159,13 +161,12 @@ class productController extends Controller
         $product->save();
 
         $data = [
-            'message' => 'Producto actualizado',
-            'products' => $product,
-            'status' => 200
+            "message" => "Producto actualizado",
+            "products" => $product,
+            "status" => 200,
         ];
 
         return response()->json($data, 200);
-
     }
 
     // public function updatePartial(Request $request, $id)
@@ -223,7 +224,6 @@ class productController extends Controller
     //     return response()->json($data, 200);
     // }
 
-    
     // POST /checkout: Finalizar compra y generar factura
     public function checkout(Request $request)
     {
@@ -231,6 +231,12 @@ class productController extends Controller
 
         // Aquí se puede agregar la lógica para procesar el pago y generar la factura.
 
-        return response()->json(['message' => 'Compra finalizada y factura generada', 'status' => 201], 201);
+        return response()->json(
+            [
+                "message" => "Compra finalizada y factura generada",
+                "status" => 201,
+            ],
+            201
+        );
     }
 }
