@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\productController;
 use App\Http\Controllers\Api\shoppingcartController;
 use App\Models\shoppingcart;
 use App\Http\Controllers\Api\usuariosController;
-
+use App\Http\Controllers\AuthController;
 //Productos
 
 //Administrador
@@ -36,6 +36,8 @@ Route::post('/Usuarios', [usuariosController::class, 'registrar']);
 
 
 //Autenticación de usuarios 
+Route::post('/register', [AuthController::class, 'register']);
+
 Route::post('login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function(){

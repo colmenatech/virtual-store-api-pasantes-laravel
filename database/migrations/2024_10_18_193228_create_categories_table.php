@@ -5,17 +5,20 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
-{
+{ 
     /**
      * Run the migrations.
      */
     public function up(): void
     {
+        
+        if (!Schema::hasTable('categories')) {
         Schema::create('categories', function (Blueprint $table) {
             $table->integer('IdCategory', true);
             $table->string('NameCategory', 50);
         });
     }
+}
 
     /**
      * Reverse the migrations.
@@ -24,4 +27,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('categories');
     }
+    
+    
 };
