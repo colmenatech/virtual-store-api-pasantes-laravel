@@ -26,15 +26,6 @@ Route::put('/products/{id}', [productController::class, 'update']); //actualiza 
  Route::get('/products/{id}', [productController::class, 'show']); //muestra un producto ne específico o el detalle de este
 
 
-
-//Usuarios
-  Route::get('/Usuarios', [usuariosController::class, 'mostrar']);
-
- Route::post('/Usuarios/{id}',[usuariosController::class,'buscar']);
-
-Route::post('/Usuarios', [usuariosController::class, 'registrar']);
-
-
 //CATEGORIAS
 //Route::middleware(['role:admin'])->group(function () {
     // Rutas CRUD para categorías
@@ -54,3 +45,11 @@ Route::post('/Usuarios', [usuariosController::class, 'registrar']);
     // Ruta para obtener los detalles de una categoría específica por su ID
     Route::get('/categories/{id}', [categoriesController::class, 'show']);
 //});
+
+
+//Factura 
+  // Ruta para listar todas las facturas
+  Route::get('/categories', [categoriesController::class, 'index']);
+
+  // Ruta para obtener los detalles de una facura en específico
+  Route::get('/categories/{id}', [categoriesController::class, 'show']);
