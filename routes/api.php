@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\productController;
 use App\Http\Controllers\Api\usuariosController;
 use App\Http\Controllers\Api\categoriesController;
+use App\Http\Controllers\RolePermissionController;
 
 
 //Productos
@@ -54,3 +55,17 @@ Route::post('/Usuarios', [usuariosController::class, 'registrar']);
     // Ruta para obtener los detalles de una categoría específica por su ID
     Route::get('/categories/{id}', [categoriesController::class, 'show']);
 //});
+
+
+//ROLES Y PERMISOS
+
+// Ruta para crear un nuevo rol
+Route::post('/roles', [RolePermissionController::class, 'createRole']);
+
+// Ruta para crear un nuevo permiso
+Route::post('/permissions', [RolePermissionController::class, 'createPermission']);
+
+// Ruta para asignar permisos a un rol existente
+Route::post('/roles/assign-permissions', [RolePermissionController::class, 'assignPermissionToRole']);
+
+
