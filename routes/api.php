@@ -3,8 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\productController;
-use App\Http\Controllers\Api\shoppingcartController;
-use App\Models\shoppingcart;
 use App\Http\Controllers\Api\usuariosController;
 
 //Productos

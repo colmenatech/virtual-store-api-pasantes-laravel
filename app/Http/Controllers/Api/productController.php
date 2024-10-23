@@ -13,24 +13,31 @@ class productController extends Controller
     //ADMINISTRADOR
 
     // Método para obtener todos los productos
+   // Método para obtener todos los productos
     public function index()
     {
-        // Obtener todas los productos
+        // Obtener todos los productos
         $products = Products::all();
 
         // Verificar si no se encontraron productos
         if ($products->isEmpty()) {
-            return response()->json(['message' => 'No se encontró el producto'], 404);
+            $errorResponse = [
+                'status' => 'error',
+                'code' => 404,
+                'message' => 'No se encontró el producto'
+            ];
+            return response()->json($errorResponse, 404);
         }
 
         // Preparar la respuesta
-        $data =[
+        $successResponse = [
             'products' => $products,
             'status' => 200
-    ];
-            
-    return response()->json($data, 200);
+        ];
+        
+        return response()->json($successResponse, 200);
     }
+
 
     public function store(Request $request)
     {
