@@ -5,51 +5,59 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\productController;
 use App\Http\Controllers\Api\usuariosController;
 use App\Http\Controllers\Api\categoriesController;
-
+use App\Http\Controllers\Api\InvoiceController;
 
 //Productos
 
 //Administrador
+// Grupo de rutas CRUD para Administrador
+//Route::group(['prefix' => 'admin'], function () 
+//{
+  // Ruta para crear un nuevo producto (solo administrador)
+  Route::post('/products', [productController::class, 'store']);
+  
+  // Ruta para actualizar un producto existente (solo administrador)
+  Route::put('/products/{id}', [productController::class, 'update']);
+  
+  // Ruta para eliminar un producto existente (solo administrador)
+  Route::delete('/products/{id}', [productController::class, 'destroy']);
+  
+  // Ruta para listar todos los productos (administrador)
+  Route::get('/products', [productController::class, 'index']);
+  
+  // Ruta para obtener los detalles de un producto específico (administrador)
+  Route::get('/products/{id}', [productController::class, 'show']);
+//});
 
-Route::get('/products', [productController::class, 'index']); //muestra todos los productos
+// Grupo de rutas CRUD para Cliente
+//Route::group(['prefix' => 'client'], function ()
+ //{
+  // Ruta para listar todos los productos (cliente)
+  Route::get('/products', [productController::class, 'index']);
+  
+  // Ruta para obtener los detalles de un producto específico (cliente)
+  Route::get('/products/{id}', [productController::class, 'show']);
+//});
 
-Route::post('/products', [productController::class, 'store']); // Agregar o crea producto
-
-Route::delete('/products/{id}', [productController::class, 'destroy']); // Eliminar producto
-
-Route::put('/products/{id}', [productController::class, 'update']); //actualiza el producto
-
-//Cliente
-
- Route::get('/products', [productController::class, 'index']); //muestra todos los productos
-
- Route::get('/products/{id}', [productController::class, 'show']); //muestra un producto ne específico o el detalle de este
-
-
-//CATEGORIAS
-//Route::middleware(['role:admin'])->group(function () {
-    // Rutas CRUD para categorías
-
-    // Ruta para crear una nueva categoría
-    Route::post('/categories', [categoriesController::class, 'store']);
-
-    // Ruta para actualizar una categoría existente por su ID
-    Route::put('/categories/{id}', [categoriesController::class, 'update']);
-
-    // Ruta para eliminar una categoría por su ID
-    Route::delete('/categories/{id}', [categoriesController::class, 'destroy']);
-
-    // Ruta para listar todas las categorías
-    Route::get('/categories', [categoriesController::class, 'index']);
-
-    // Ruta para obtener los detalles de una categoría específica por su ID
-    Route::get('/categories/{id}', [categoriesController::class, 'show']);
+// Grupo de rutas CRUD para Administrador
+//Route::group(['prefix' => 'admin'], function () {
+  // Ruta para crear una nueva categoría (solo administrador)
+  Route::post('/categories', [categoriesController::class, 'store']);
+  
+  // Ruta para actualizar una categoría existente (solo administrador)
+  Route::put('/categories/{id}', [categoriesController::class, 'update']);
+  
+  // Ruta para eliminar una categoría existente (solo administrador)
+  Route::delete('/categories/{id}', [categoriesController::class, 'destroy']);
+  
+  // Ruta para listar todas las categorías (administrador)
+  Route::get('/categories', [categoriesController::class, 'index']);
 //});
 
 
 //Factura 
   // Ruta para listar todas las facturas
-  Route::get('/categories', [categoriesController::class, 'index']);
+  Route::get('/invoice', [InvoiceController::class, 'index']);
 
   // Ruta para obtener los detalles de una facura en específico
-  Route::get('/categories/{id}', [categoriesController::class, 'show']);
+  Route::get('/invoice/{id}', [InvoiceController::class, 'show']);
