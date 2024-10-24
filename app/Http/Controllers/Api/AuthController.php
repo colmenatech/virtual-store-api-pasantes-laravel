@@ -18,6 +18,7 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed'
+            
         ]);
 
         // alta del usuario
@@ -38,22 +39,29 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            $user = Auth::user(); // cambiar $users a $user
+            $user = Auth::user(); 
             $token = $user->createToken('token')->plainTextToken;
             $cookie = cookie('cookie_token', $token, 60 * 24);
 
-            return response(["token" => $token], Response::HTTP_OK)->withCookie($cookie); // cambiar withoutCookie a withCookie
+            return response(["token" => $token], Response::HTTP_OK)->withCookie($cookie);
         } else {
             return response(["message" => "Credenciales inválidas"], Response::HTTP_UNAUTHORIZED);
         }
     }
 
+    // public function userProfile(Request $request) {
+    //     return response()->json([
+    //         "message" => "userProfile OK",
+    //         "userData" => auth()->user()
+    //     ], Response::HTTP_OK);
+    // }
     public function userProfile(Request $request) {
         return response()->json([
             "message" => "userProfile OK",
             "userData" => auth()->user()
         ], Response::HTTP_OK);
     }
+    
 
     public function logout() {
         $cookie = Cookie::forget('cookie_token');
