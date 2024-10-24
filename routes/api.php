@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\productController;
 use App\Http\Controllers\Api\usuariosController;
 use App\Http\Controllers\Api\categoriesController;
 use App\Http\Controllers\Api\InvoiceController;
+use App\Http\Controllers\Api\subcategoriesController;
 
 //Productos
 
@@ -61,3 +62,14 @@ use App\Http\Controllers\Api\InvoiceController;
 
   // Ruta para obtener los detalles de una facura en específico
   Route::get('/invoice/{id}', [InvoiceController::class, 'show']);
+
+
+  //SUBCATEGORÍAS
+  // Rutas CRUD para Subcategorías
+//Route::group(['prefix' => 'admin'], function () {
+  Route::post('/subcategories', [subcategoriesController::class, 'store']);
+  Route::put('/subcategories/{id}', [subcategoriesController::class, 'update']);
+  Route::delete('/subcategories/{id}', [subcategoriesController::class, 'destroy']);
+  Route::get('/subcategories', [subcategoriesController::class, 'index']);
+  Route::get('/subcategories/{id}', [subcategoriesController::class, 'show']);
+//});

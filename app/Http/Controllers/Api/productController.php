@@ -40,10 +40,10 @@ class productController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->user()->role !== 'admin') 
+        /*if ($request->user()->role !== 'admin') 
         {
             return response()->json(['message' => 'No autorizado'], 403);
-        }
+        }*/
 
         // Validar los datos recibidos en la solicitud
         $validator = Validator::make($request->all(), [
@@ -52,6 +52,7 @@ class productController extends Controller
             'Price' => 'required|max:10', // El precio es requerido y no debe superar los 10 caracteres
             'Stock' => 'required', // La cantidad de stock es requerida
             'IdCategory' => 'required', // El ID de la categoría es requerido
+            'IdSubcategory' => 'required', // El ID de la subcategoría es requerido
             'Status' => 'required' // El estado del producto es requerido
         ]);
 
@@ -72,6 +73,7 @@ class productController extends Controller
             'Price' => $request->Price,
             'Stock' => $request->Stock,
             'IdCategory' => $request->IdCategory,
+            'IdSubcategory' => $request->IdSubcategory,
             'Status' => $request->Status
         ]);
 
@@ -135,6 +137,7 @@ class productController extends Controller
             'Price' => 'required|max:10', // El precio es requerido y no debe superar los 10 caracteres
             'Stock' => 'required', // La cantidad de stock es requerida
             'IdCategory' => 'required', // El ID de la categoría es requerido
+            'IdSubcategory' => 'required', // El ID de la subcategoría es requerido
             'Status' => 'required' // El estado del producto es requerido
         ]);
 
